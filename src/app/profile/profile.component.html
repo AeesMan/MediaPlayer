@@ -1,0 +1,28 @@
+<!-- Меню -->
+<div class="main-container" [class.menu-open]="isMenuOpen">
+  <div id="menuPanel" class="menu-panel" [class.open]="isMenuOpen">
+    <div class="menu-buttons">
+      <button class="menu-item" routerLink="/home">Home</button>
+      <button class="menu-item" routerLink="/upload">Upload</button>
+    </div>
+  </div>
+
+  <button id="menuButton" class="menu-button" (click)="toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </button>
+</div>
+
+<!-- Контент профілю -->
+<div class="profile-container">
+  <h1>Profile</h1>
+  <div class="profile-info">
+    <p><strong>Login:</strong> {{ user.login }}</p>
+    <!-- <p *ngIf="user.email"><strong>Email:</strong> {{ user.email }}</p>
+    <p *ngIf="user.bio"><strong>About me:</strong> {{ user.bio }}</p> -->
+    <p><strong>Used storage: </strong>{{ formattedUsedStorage }} / 2 GB({{ usedPercentage | number: '1.0-2' }}%)</p>
+
+  </div>
+</div>
+
+<!-- Кнопка Log Out по центру внизу -->
+<button class="logout-fixed" (click)="logout()">Log Out</button>

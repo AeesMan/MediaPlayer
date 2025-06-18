@@ -1,0 +1,638 @@
+/* Основний контейнер */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+/* Контейнер для фотографії або відеоплеєра */
+.media-container {
+  width: 50%;
+  height: 70vh;
+  background-color: #201f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-right: 50px;
+}
+
+/* Фотографія */
+.media-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Відеоплеєр */
+.media-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Контейнер для інших елементів сторінки */
+.content-container {
+  width: 25%;
+  background-color: #333;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Загальні стилі для сторінки */
+h1 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+/* Контейнер для кнопок */
+.controls-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #201f1f;
+  padding: 15px;
+  border-top: 2px solid #7a1a1a;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Приховуємо панель керування, якщо відтворюється відео */
+.controls-container.hidden {
+  display: none;
+}
+
+/* Слайдер для керування часом відтворення */
+.slider-container {
+  position: relative;
+  width: 60%;
+  height: 5px;
+  background-color: #444;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+/* Лінія прогресу */
+.slider-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #ff4d4d;
+  border-radius: 5px;
+  transition: width 0.1s ease;
+}
+
+/* Контейнер для кнопки слайдера */
+.slider-knob-container {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Кнопка слайдера (приховуємо круг) */
+.slider-knob {
+  display: none;
+}
+
+/* Анімація кнопки при наведенні */
+.slider-knob:hover {
+  transform: scale(1.2);
+}
+
+/* Інформація про трек */
+.track-info {
+  color: white;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+/* Час відтворення */
+.track-time {
+  font-size: 14px;
+  color: #fff;
+  margin-right: 20px;
+}
+
+/* Кнопки керування */
+.controls-container button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+/* Слайдер для гучності */
+.controls-container input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100px;
+  height: 2px;
+  background: #888;
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+  margin-right: 50px;
+}
+
+.controls-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #ff4d4d;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.controls-container input[type="range"]:hover {
+  background: #555;
+}
+
+.controls-container input[type="range"]:focus {
+  outline: none;
+}
+
+.controls-container input[type="range"]:active::-webkit-slider-thumb {
+  background: #ff3333;
+}
+
+/* Кнопки */
+button {
+  background-color: #201f1f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+button i {
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Повзунок для гучності */
+label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+input[type="range"] {
+  margin-left: 100px;
+  width: 100px;
+}
+
+/* Меню */
+.menu {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#menuButton {
+  background-color: #000000;
+  color: white;
+  font-size: 18px;
+  padding: 12px 30px;
+  border-radius: 5px;
+}
+
+#menuButton:hover {
+  background-color: #000000;
+}
+
+.menu-buttons {
+  margin-top: 80px;
+}
+
+/* Основний контейнер */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+/* Клас, який додається при відкритті меню */
+.main-container.menu-open {
+  margin-left: 150px;
+}
+
+/* Список треків */
+.track-list {
+  position: fixed;
+  top: 45%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 800px;
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.track-list h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.track-item {
+  position: relative; /* Для позиціонування кнопок */
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.track-item.active {
+  background-color: #444;
+  border: 2px solid #007bff;
+}
+
+.track-item:hover {
+  background-color: #444;
+}
+
+.track-cover-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  z-index: 0;
+}
+
+.track-cover {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.track-info {
+  flex-grow: 1;
+  z-index: 0;
+  pointer-events: none; /* Щоб кліки проходили крізь до play-button */
+}
+
+.track-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.track-artist {
+  font-size: 14px;
+  color: #bbb;
+  margin: 0;
+}
+
+.play-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  z-index: 1;
+  color: transparent;
+  cursor: pointer;
+}
+
+.play-button i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.play-button:hover i {
+  opacity: 1;
+}
+
+.play-button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.play-button:active {
+  background-color: rgb(0, 0, 0, 1);
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Вище кнопки play */
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.delete-button:hover {
+  background: rgba(255, 0, 0, 0.7);
+}
+
+/* Панель меню */
+.menu-panel {
+  position: fixed;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 20%;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: left 0.3s ease;
+  z-index: 100;
+}
+
+/* Відкриття панелі меню */
+.menu-panel.open {
+  left: 0;
+}
+
+/* Кнопка меню (залишатиметься на одному місці) */
+.menu-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+/* Кнопки меню */
+.menu-buttons {
+  margin-top: 80px;
+}
+
+.menu-item {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 15px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 0; /* Прибираємо закруглені кути */
+}
+
+.menu-item:hover {
+  background-color: #575757;
+}
+
+/* Головна сторінка */
+.homePage {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* Вміст */
+.content {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+/* Список відео */
+.video-list {
+  position: fixed;
+  top: 45%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 800px;
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.video-list h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.video-item {
+  position: relative; /* Додаємо це */
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+
+.video-item.active {
+  background-color: #444;
+  border: 2px solid #007bff;
+}
+
+.video-item:hover {
+  background-color: #444;
+}
+
+.video-cover-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.video-cover {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.video-info {
+  flex-grow: 1;
+}
+
+.video-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.video-artist {
+  font-size: 14px;
+  color: #bbb;
+  margin: 0;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 123, 255, 0.0);
+  color: rgba(255, 255, 255, 0.0);
+  border: none;
+  padding: 18px;
+  font-size: 5px;
+  cursor: pointer;
+  border-radius: 11%;
+  transition: background-color 0.2s ease;
+  z-index: 1;
+}
+
+.play-button:hover {
+  background-color: rgb(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.play-button:active {
+  background-color: rgb(0, 0, 0, 1);
+}
+
+.delete-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0;
+}
+
+/* Кнопка перемикання між списками */
+button.toggle-media-list {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button.toggle-media-list:hover {
+  background-color: #0056b3;
+}
+
+/* Кнопка перемикання між списками */
+.toggle-media-list {
+  position: fixed; /* Фіксоване позиціонування */
+  top: 20px; /* Відступ зверху */
+  right: 20px; /* Відступ зправа */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  z-index: 1000; /* Забезпечуємо, щоб кнопка була поверх інших елементів */
+}
+
+.toggle-media-list:hover {
+  background-color: #0056b3;
+}
+
+/* Контейнер для фотографії або відеоплеєра */
+.media-container {
+  margin-top: 85px; /* Відступ зверху */
+  margin-left: 40px; /* Відступ зліва */
+  width: 50%;
+  height: 70vh;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-right: 50px;
+}
+
+/* Фотографія */
+.media-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Відеоплеєр */
+.media-video {
+  /* margin-left: 200px; Відступ від лівого краю 
+  margin-bottom: 100px; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hidden {
+  display: none;
+}
