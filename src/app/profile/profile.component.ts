@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      this.http.get<any>(`http://localhost:5000/users/${userId}`).subscribe({
+      this.http.get<any>(`https://mediaserver-production.up.railway.app/users/${userId}`).subscribe({
         next: (data) => {
           this.user = data;
         },

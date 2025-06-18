@@ -36,7 +36,7 @@ export class LoginComponent {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.loginError = null; // очистити попереднє повідомлення
 
-    this.http.post<any>('http://localhost:5000/auth/login', this.user, { headers }).subscribe({
+    this.http.post<any>('https://mediaserver-production.up.railway.app/auth/login', this.user, { headers }).subscribe({
       next: (response) => {
         localStorage.setItem('userId', response.userId);
         this.router.navigate(['/home']);

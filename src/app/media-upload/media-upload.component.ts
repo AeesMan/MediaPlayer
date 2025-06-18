@@ -78,8 +78,8 @@ if (!userId) {
 
   const apiUrl =
     this.uploadType === 'audio'
-      ? 'http://localhost:5000/uploads'
-      : 'http://localhost:5000/uploads/video';
+      ? 'https://mediaserver-production.up.railway.app/uploads'
+      : 'https://mediaserver-production.up.railway.app/uploads/video';
 
 
 

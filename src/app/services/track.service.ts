@@ -23,7 +23,7 @@ export interface Video {
   providedIn: 'root',
 })
 export class MediaService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'https://mediaserver-production.up.railway.app';
 
   constructor(private http: HttpClient) {}
 

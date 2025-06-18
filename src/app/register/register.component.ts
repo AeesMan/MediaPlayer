@@ -41,7 +41,7 @@ export class RegisterComponent {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.post('http://localhost:5000/auth/register', { login, password }, { headers }).subscribe({
+    this.http.post('https://mediaserver-production.up.railway.app/auth/register', { login, password }, { headers }).subscribe({
       next: () => {
         console.log('Registration successful');
         this.router.navigate(['/login']);
